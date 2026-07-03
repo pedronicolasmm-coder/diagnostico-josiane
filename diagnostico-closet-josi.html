@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico — Closet Josi Sparano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:#FDFCFA;
+  color:#1A1410;
+  font-family:'Jost',sans-serif;
+  font-size:15px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+
+/* FLOATING */
+.floats{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.fi{position:absolute;opacity:0;}
+@keyframes floatup{
+  0%{transform:translateY(108vh) rotate(-4deg);opacity:0;}
+  7%{opacity:0.05;}93%{opacity:0.05;}
+  100%{transform:translateY(-10vh) rotate(4deg);opacity:0;}
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(253,252,250,0.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid #EDE8E0;
+  padding:16px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;font-weight:400;letter-spacing:.06em;}
+.nav-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B0967A;}
+
+/* HERO */
+.hero{
+  padding-top:73px;
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr;
+}
+.hero-left{
+  padding:80px 56px 80px 48px;
+  display:flex;flex-direction:column;justify-content:center;
+  max-width:760px;
+}
+.hero-right{
+  background:#F7F2EB;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-right-deco{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-overline{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:#B0967A;margin-bottom:24px;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-overline::before{content:'';width:28px;height:1px;background:#C5A564;}
+.hero h1{
+  font-size:clamp(36px,4vw,54px);
+  font-weight:300;line-height:1.1;margin-bottom:20px;
+}
+.hero h1 em{font-style:italic;color:#B0967A;display:block;}
+.hero-desc{font-size:14px;color:#7A6A58;max-width:400px;margin-bottom:44px;font-weight:300;line-height:1.75;}
+.hero-nums{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:#EDE8E0;
+  border:1px solid #EDE8E0;border-radius:4px;overflow:hidden;
+}
+.hn{background:#FDFCFA;padding:16px 18px;}
+.hn .v{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:#1A1410;display:block;line-height:1;}
+.hn .l{font-size:11px;color:#A09080;margin-top:4px;display:block;font-weight:300;}
+.badge{display:inline-block;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase;}
+.b-gold{background:#F5EDD8;color:#8A6A30;}
+.b-red{background:#F5E8E4;color:#8A3020;}
+.b-green{background:#E8F2E8;color:#2A6A30;}
+.b-blue{background:#E8EEF8;color:#2A4A8A;}
+
+/* MAIN */
+main{max-width:920px;margin:0 auto;padding:0 40px 120px;position:relative;z-index:1;}
+.sec{margin-top:88px;}
+.sec-line{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#C5A564;}
+.sec-rule{flex:1;height:1px;background:#EDE8E0;}
+.sec h2{font-size:clamp(26px,4vw,40px);font-weight:300;letter-spacing:-.01em;margin-bottom:28px;}
+.sec h2 em{font-style:italic;color:#B0967A;}
+
+/* OVERVIEW STRIP */
+.ostrip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:#EDE8E0;
+  border:1px solid #EDE8E0;border-radius:4px;overflow:hidden;
+  margin-bottom:40px;
+}
+.oi{background:#FDFCFA;padding:20px 14px;text-align:center;}
+.oi-ico{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;}
+.oi-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:#1A1410;margin-bottom:2px;}
+.oi-lbl{font-size:11px;color:#7A6A58;font-weight:300;line-height:1.4;}
+
+/* ICON CARDS */
+.icards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:580px){.icards{grid-template-columns:1fr;}}
+.icard{
+  background:#FFFFFF;border:1px solid #EDE8E0;border-radius:4px;
+  padding:22px;display:flex;gap:16px;align-items:flex-start;
+  transition:box-shadow .2s;
+}
+.icard:hover{box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+.icard-ico{
+  flex-shrink:0;width:40px;height:40px;border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+}
+.ok .icard-ico{background:#F5EDD8;color:#8A6A30;}
+.bad .icard-ico{background:#F5E8E4;color:#8A3020;}
+.icard h3{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;margin-bottom:5px;}
+.icard p{font-size:13px;color:#7A6A58;font-weight:300;line-height:1.65;}
+
+/* CENTRAL */
+.cbox{background:#1A1410;border-radius:4px;padding:36px;margin-bottom:14px;}
+.cbox .cl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A7A64;display:block;margin-bottom:14px;}
+.cbox h3{font-size:clamp(20px,3vw,28px);font-weight:300;color:#FAF5EE;margin-bottom:12px;line-height:1.2;}
+.cbox h3 em{font-style:italic;color:#C5A564;}
+.cbox p{font-size:14px;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.8;}
+
+/* BAR */
+.bc{background:#FFFFFF;border:1px solid #EDE8E0;border-radius:4px;padding:26px;}
+.bc h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;margin-bottom:4px;}
+.bc .bs{font-size:13px;color:#A09080;margin-bottom:22px;font-weight:300;}
+.br{display:grid;grid-template-columns:160px 1fr 80px;align-items:center;gap:14px;margin-bottom:10px;}
+.br:last-child{margin-bottom:0;}
+.bl{font-size:13px;color:#4A3A2A;font-weight:300;}
+.bt{height:8px;background:#F0E8DC;border-radius:2px;overflow:hidden;}
+.bf{height:100%;border-radius:2px;width:0;transition:width 1.6s cubic-bezier(.2,.8,.2,1);}
+.bf-a{background:#C5A564;}
+.bf-b{background:#D4B88A;}
+.bf-c{background:#C5A564;opacity:.3;}
+.bf-d{background:linear-gradient(90deg,#C5A564,#E8C878);}
+.bn{font-family:'JetBrains Mono',monospace;font-size:11px;color:#A09080;text-align:right;}
+.bc.go .w100{width:100%;}
+.bc.go .w82{width:82%;}
+.bc.go .w71{width:71%;}
+.bc.go .w90{width:90%;}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;}
+.step{display:grid;grid-template-columns:48px 1fr;gap:18px;padding:22px 0;border-top:1px solid #EDE8E0;}
+.step:first-child{border-top:none;padding-top:0;}
+.step-ico{width:44px;height:44px;border-radius:4px;background:#F5EDD8;display:flex;align-items:center;justify-content:center;color:#8A6A30;flex-shrink:0;}
+.step h3{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;margin-bottom:5px;}
+.step p{font-size:13px;color:#7A6A58;font-weight:300;}
+
+/* QUOTE */
+.qblock{background:#F8F3EC;border-left:2px solid #C5A564;padding:22px 26px;border-radius:0 4px 4px 0;margin-top:14px;}
+.qblock p{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;font-weight:400;color:#4A3A2A;line-height:1.6;}
+
+/* ROI */
+.roi{background:#1A1410;border-radius:4px;padding:40px;}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
+@media(max-width:540px){.rg{grid-template-columns:1fr;}}
+.rbox{background:rgba(255,255,255,0.04);border:1px solid rgba(197,165,100,0.1);border-radius:4px;padding:20px;}
+.rbox h4{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8A7A64;margin-bottom:14px;letter-spacing:.1em;text-transform:uppercase;}
+.rrow{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:rgba(255,255,255,0.25);font-weight:300;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.rrow:last-child{border-bottom:none;}
+.rv{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:#FAF5EE;}
+.rv.hi{color:#C5A564;}
+.rnote{grid-column:1/-1;font-size:11px;color:rgba(255,255,255,0.2);font-weight:300;border-top:1px solid rgba(255,255,255,0.06);padding-top:14px;margin-top:6px;line-height:1.65;}
+
+/* CTA */
+.cta{text-align:center;padding:72px 0;border-top:1px solid #EDE8E0;margin-top:88px;}
+.cta h2{font-size:clamp(26px,4vw,38px);font-weight:300;margin-bottom:12px;}
+.cta h2 em{font-style:italic;color:#B0967A;}
+.cta p{font-size:14px;color:#7A6A58;font-weight:300;max-width:340px;margin:0 auto 20px;}
+.cta-sig{font-family:'JetBrains Mono',monospace;font-size:10px;color:#B0967A;letter-spacing:.1em;}
+.cta-sig b{color:#1A1410;font-weight:500;}
+
+@media(max-width:760px){
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-right{height:280px;}
+  .hero-left{padding:56px 24px;}
+  .ostrip{grid-template-columns:1fr 1fr;}
+  nav{padding:14px 24px;}
+  main{padding:0 24px 80px;}
+  .br{grid-template-columns:90px 1fr 60px;}
+}
+</style>
+</head>
+<body>
+
+<div class="floats" id="floats" aria-hidden="true"></div>
+
+<nav>
+  <span class="nav-brand">Closet Josi Sparano</span>
+  <span class="nav-tag">Diagnóstico de Perfil · 2026</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-overline">@closet_josi_sparano · Moda Feminina Modesta</div>
+    <h1>Uma marca com potencial real.<br><em>Com estrutura ainda a construir.</em></h1>
+    <p class="hero-desc">Diagnóstico completo com base na reunião realizada — o que está funcionando, onde estão os gargalos e o que muda com estratégia e acompanhamento profissional.</p>
+    <div class="hero-nums">
+      <div class="hn">
+        <span class="v">485</span>
+        <span class="l">seguidores</span>
+        <span class="badge b-gold">marca com ~1 mês</span>
+      </div>
+      <div class="hn">
+        <span class="v">40</span>
+        <span class="l">publicações</span>
+        <span class="badge b-green">boa proporção</span>
+      </div>
+      <div class="hn">
+        <span class="v">~14</span>
+        <span class="l">curtidas médias</span>
+        <span class="badge b-red">alcance limitado</span>
+      </div>
+      <div class="hn">
+        <span class="v">1–2</span>
+        <span class="l">contatos/semana via insta</span>
+        <span class="badge b-red">volume muito baixo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- VISÃO GERAL -->
+  <div class="sec">
+    <div class="sec-line"><span class="sec-num">Visão Geral</span><div class="sec-rule"></div></div>
+    <h2>O perfil em <em>números</em></h2>
+    <div class="ostrip">
+      <div class="oi">
+        <div class="oi-ico" style="background:#F5EDD8;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A6A30" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="oi-val">485</div>
+        <div class="oi-lbl">Seguidores</div>
+      </div>
+      <div class="oi">
+        <div class="oi-ico" style="background:#E8F2E8;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2A6A30" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="oi-val">1–2</div>
+        <div class="oi-lbl">Contatos/semana via Instagram</div>
+      </div>
+      <div class="oi">
+        <div class="oi-ico" style="background:#F5E8E4;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A3020" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="oi-val">~14</div>
+        <div class="oi-lbl">Curtidas médias por post</div>
+      </div>
+      <div class="oi">
+        <div class="oi-ico" style="background:#E8EEF8;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2A4A8A" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="oi-val">BR</div>
+        <div class="oi-lbl">Entrega para todo o Brasil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE 1 -->
+  <div class="sec">
+    <div class="sec-line"><span class="sec-num">01</span><div class="sec-rule"></div></div>
+    <h2>O que já está <em>funcionando</em></h2>
+    <div class="icards">
+      <div class="icard ok">
+        <div class="icard-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div>
+          <h3>Produto com design exclusivo</h3>
+          <p>Josiane desenha as peças, escolhe tecidos e aprova os pilotos. Alfaiataria, malhas premium e pijama com diferencial real — isso é raro no nicho de moda modesta.</p>
+        </div>
+      </div>
+      <div class="icard ok">
+        <div class="icard-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div>
+          <h3>Nicho com posicionamento claro</h3>
+          <p>Moda feminina modesta, high ticket, público cristão. Referência Rapuk. Posicionamento definido logo no início é vantagem que muitas marcas levam anos para encontrar.</p>
+        </div>
+      </div>
+      <div class="icard ok">
+        <div class="icard-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <div>
+          <h3>Fotografia profissional mensal</h3>
+          <p>Fotógrafa fixa por coleção, uma vez por mês. Isso garante material de qualidade e consistência visual para o feed — base sólida para qualquer estratégia de conteúdo.</p>
+        </div>
+      </div>
+      <div class="icard ok">
+        <div class="icard-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+        <div>
+          <h3>Site e WhatsApp ativos</h3>
+          <p>Canais de venda já existem. O problema não é falta de estrutura técnica — é falta de tráfego direcionado para esses canais.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE 2 -->
+  <div class="sec">
+    <div class="sec-line"><span class="sec-num">02</span><div class="sec-rule"></div></div>
+    <h2>O <em>diagnóstico central</em></h2>
+    <div class="cbox">
+      <span class="cl">Ponto crítico identificado na reunião</span>
+      <h3>Produto forte, marca nova,<br><em>vendas quase exclusivas por boca a boca.</em></h3>
+      <p>A Josiane tem um produto diferenciado, posicionamento claro e estrutura técnica montada. O que ainda não existe é uma máquina de aquisição de clientes funcionando. As vendas vieram quase totalmente por indicação — o que é ótimo como validação, mas insustentável como modelo de crescimento. O Instagram ainda não está convertendo. O site não gera venda por conta própria. Falta padrão visual, frequência estratégica de conteúdo e um fluxo claro de atração e conversão.</p>
+    </div>
+    <div class="bc" id="bc">
+      <h3>Canais de aquisição atuais</h3>
+      <p class="bs">De onde vieram as vendas até agora</p>
+      <div class="br">
+        <span class="bl">Boca a boca</span>
+        <div class="bt"><div class="bf bf-a w100"></div></div>
+        <span class="bn">Principal canal</span>
+      </div>
+      <div class="br">
+        <span class="bl">Instagram Direct</span>
+        <div class="bt"><div class="bf bf-b w82"></div></div>
+        <span class="bn">1–2/semana</span>
+      </div>
+      <div class="br">
+        <span class="bl">Site próprio</span>
+        <div class="bt"><div class="bf bf-c w71"></div></div>
+        <span class="bn">Quase zero</span>
+      </div>
+      <div class="br">
+        <span class="bl">Potencial com estratégia</span>
+        <div class="bt"><div class="bf bf-d w90"></div></div>
+        <span class="bn">Multi-canal</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE 3 -->
+  <div class="sec">
+    <div class="sec-line"><span class="sec-num">03</span><div class="sec-rule"></div></div>
+    <h2>O que está <em>travando</em></h2>
+    <div class="icards">
+      <div class="icard bad">
+        <div class="icard-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg></div>
+        <div>
+          <h3>Falta de padrão visual</h3>
+          <p>Josiane sente que tem muita informação mas sem direção. Sem um guia de identidade visual aplicado ao conteúdo, cada post parece de uma marca diferente.</p>
+        </div>
+      </div>
+      <div class="icard bad">
+        <div class="icard-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v5M15 4v5"/></svg></div>
+        <div>
+          <h3>Sem calendário editorial</h3>
+          <p>Sem planejamento de conteúdo, a publicação fica irregular. O algoritmo não aprende quando e para quem distribuir — e o alcance fica instável.</p>
+        </div>
+      </div>
+      <div class="icard bad">
+        <div class="icard-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div>
+          <h3>Sem tráfego pago</h3>
+          <p>Moda high ticket com entrega nacional precisa de anúncio para escalar. O orgânico sozinho não alcança o volume de pessoas certas para esse tipo de produto.</p>
+        </div>
+      </div>
+      <div class="icard bad">
+        <div class="icard-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div>
+          <h3>Sem fluxo de atendimento organizado</h3>
+          <p>Quem chega pelo Instagram ou WhatsApp não encontra uma jornada clara até a compra. Sem script e sem processo, cada venda depende do improviso.</p>
+        </div>
+      </div>
+      <div class="icard bad">
+        <div class="icard-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <div>
+          <h3>Reels de topo de funil ausentes</h3>
+          <p>O conteúdo atual ainda não está estruturado para alcançar quem não conhece a marca. Faltam vídeos com ganchos para atrair o público certo de forma consistente.</p>
+        </div>
+      </div>
+      <div class="icard bad">
+        <div class="icard-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div>
+          <h3>Marca com apenas 1 mês de vida</h3>
+          <p>Não é fraqueza — é contexto. A estrutura de marketing ainda não foi construída porque a marca acabou de nascer. O momento certo para montar isso é agora.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE 4 -->
+  <div class="sec">
+    <div class="sec-line"><span class="sec-num">04</span><div class="sec-rule"></div></div>
+    <h2>O que muda com gestão <em>profissional</em></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg></div>
+        <div>
+          <h3>Padrão visual aplicado ao conteúdo</h3>
+          <p>Guia de aplicação da identidade visual em todos os formatos — fotos, reels, carrosséis e stories. Cada post comunica a mesma marca, com a mesma personalidade.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v5M15 4v5"/></svg></div>
+        <div>
+          <h3>Calendário editorial estruturado</h3>
+          <p>Planejamento mensal com frequência definida, mix de formatos (fotos, vídeos, carrosséis, estáticos) e dias fixos de publicação para treinar o algoritmo.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <div>
+          <h3>Reels de topo de funil para o público cristão</h3>
+          <p>Vídeos com ganchos direcionados para mulheres que buscam moda modesta com elegância — mostrando o processo de criação, os tecidos, os diferenciais do produto.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div>
+          <h3>Tráfego pago segmentado para o nicho certo</h3>
+          <p>Campanha de Meta Ads para mulheres cristãs interessadas em moda modesta e vestuário elegante em todo o Brasil — alcançando quem tem perfil e renda para o produto high ticket.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div>
+          <h3>Script de atendimento e fluxo de conversão</h3>
+          <p>Processo claro do primeiro contato até a venda fechada — via Instagram Direct e WhatsApp. Sem improvisar, sem perder cliente por falta de resposta rápida e estruturada.</p>
+        </div>
+      </div>
+    </div>
+    <div class="qblock">
+      <p>Moda modesta high ticket é um dos nichos com melhor margem e público mais fiel do e-commerce feminino no Brasil. O Closet Josi tem o produto. O que falta é a máquina de aquisição.</p>
+    </div>
+  </div>
+
+
+
+  <div class="cta">
+    <h2>Próximo <em>passo</em></h2>
+    <p>Esse diagnóstico é gratuito e sem compromisso. Se fizer sentido conversar sobre como aplicar isso, é só responder.</p>
+    <div class="cta-sig">Preparado por <b>Pedro Munaretto</b> · @pedro_munaretto</div>
+  </div>
+
+</main>
+
+<script>
+const bc = document.getElementById('bc');
+new IntersectionObserver(e=>{
+  if(e[0].isIntersecting) bc.classList.add('go');
+},{threshold:.3}).observe(bc);
+
+const icons=[
+  `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C5A564" stroke-width="0.7"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H7v10a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V10h3.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>`,
+  `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C5A564" stroke-width="0.7"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>`,
+  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A564" stroke-width="0.7"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5A564" stroke-width="0.7"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C5A564" stroke-width="0.7"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5A564" stroke-width="0.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+];
+const f=document.getElementById('floats');
+[3,12,22,34,46,57,68,79,91].forEach((left,i)=>{
+  const el=document.createElement('div');
+  el.className='fi';
+  el.style.left=left+'%';
+  el.style.animation=`floatup ${17+i*3}s ${-i*2.4}s linear infinite`;
+  el.innerHTML=icons[i%icons.length];
+  f.appendChild(el);
+});
+</script>
+</body>
+</html>
